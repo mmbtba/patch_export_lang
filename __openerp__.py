@@ -21,14 +21,17 @@
 {
     "name": "导出翻译模块多选补丁",
     "version": "1.0",
-    "author": "zkjiao@gmai.com",
+    "author": "西安-beyond, zkjiao@gmail.com",
     "depends" : ["base",'base_setup'],
     "category" : "Generic Modules/Base",
+    'sequence': 2,
     "description": """
-    为导出翻译模块选择对话框增加多选功能
+优化补丁
+=======================
+* 为导出翻译模块选择对话框增加多选功能
     """,
     "init_xml": [],
-    'update_xml': [],
+    'update_xml': ["patch_export_lang_view.xml"],
     'demo_xml': [],
     'js': [
         'static/src/js/*.js',

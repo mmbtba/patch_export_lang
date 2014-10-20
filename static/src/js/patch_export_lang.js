@@ -52,47 +52,4 @@ openerp.patch_export_lang = function(instance) {
 	        });
 	    }
 	});
-	instance.web.form.CompletionFieldMixin._search_create_popup = 
-		function(view, ids, context) {
-	        var self = this;
-	        // beg: add by jzk 
-	        var ctx = self.build_context();
-	        var res = instance.web.pyeval.eval("contexts", ctx);
-	        var mul = false;
-	        if (res.enable_multiple_selection){
-	        	mul = true;
-	        }
-	        // end: add by jzk
-	        var pop = new instance.web.form.SelectCreatePopup(this);
-	        pop.select_element(
-	            self.field.relation,
-	            {
-	                title: (view === 'search' ? _t("Search: ") : _t("Create: ")) + this.string,
-	                initial_ids: ids ? _.map(ids, function(x) {return x[0];}) : undefined,
-	                initial_view: view,
-	                // beg: modify by jzk 
-	                disable_multiple_selection: !mul
-	                // end: modify by jzk 
-	            },
-	            self.build_domain(),
-	            // beg: modify by jzk 
-	            new instance.web.CompoundContext(ctx, context || {})
-	            // end: modify by jzk 
-	        );
-	        pop.on("elements_selected", self, function(element_ids) {
-	        	// beg: modify by jzk 
-	            self.add_id(element_ids);
-	            // end: modify by jzk 
-	            self.focus();
-	        });
-	    };
-	instance.web.form.SelectCreatePopup.include({
-		select_element: function(model, options, domain, context) {
-			var result = instance.web.pyeval.eval("contexts", context);
-			if (result.enable_multiple_selection){
-				options.disable_multiple_selection = false;
-			};
-			this._super(model, options, domain, context);
-		}
-	});
 };

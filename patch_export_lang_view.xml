@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="patch_wizard_lang_export" model="ir.ui.view">
+			<field name="name">Patch Export Translations</field>
+			<field name="model">base.language.export</field>
+			<field name="inherit_id" ref="base.wizard_lang_export" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='modules']" position="attributes">
+					<attribute name="widget">many2many_tags_p</attribute>
+					<attribute name="style">height:200px</attribute>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>
