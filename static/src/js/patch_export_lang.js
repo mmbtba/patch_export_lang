@@ -24,10 +24,14 @@ openerp.patch_export_lang = function(instance) {
 	   _lt = instance.web._lt;
 	var QWeb = instance.web.qweb;
 	
-	instance.web.form.widgets.add('many2many_tags_p', 'instance.patch_export_lang.FieldMany2ManyTags');
-    instance.patch_export_lang.FieldMany2ManyTags =	instance.web.form.FieldMany2ManyTags.extend({
+	instance.web.form.widgets.add('many2many_tags_p', 'instance.web.form.FieldMany2ManyTagsP');
+	instance.web.form.FieldMany2ManyTagsP =	instance.web.form.FieldMany2ManyTags.extend({
+  	  init: function() {
+        this._super.apply(this, arguments);
+  	  },
     	_search_create_popup : function(view, ids, context) {
 	        var self = this;
+	        self.ignore_blur = true;
 	        var pop = new instance.web.form.SelectCreatePopup(this);
 	        pop.select_element(
 	            self.field.relation,
