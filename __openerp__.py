@@ -26,6 +26,7 @@
     "category" : "Generic Modules/Base",
     'sequence': 2,
     'summary': "补丁",
+    'website':"http://git.oschina.net/mmbtba/OE7.custom_addons.patch_export_lang",
     "description": """
 优化补丁
 =======================
